@@ -19,10 +19,10 @@
             <li class="nav-item">
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Employees</a>
+                <a class="nav-link" href="index.php">Employees</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">projects</a>
+                <a class="nav-link" href="projects.php">projects</a>
             </li>
 
         </ul>
