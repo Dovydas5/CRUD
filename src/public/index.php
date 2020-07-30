@@ -11,7 +11,7 @@ $people = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container">
     <div class="card mt-5">
         <div class="card-header">
-            <h2>All people</h2>
+            <h2>Employees</h2>
             <div class="card-body">
                 <table class="table table-bordered">
                     <tr>
@@ -29,13 +29,15 @@ $people = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo $person['project'];?></td>
                         <td>
                             <a href="edit.php?id=<?php echo $person['id'];?>" class="btn btn-primary">Edit</a>
-                            <a href="../includes/delete.php?id=<?php echo $person['id'];?>"class="btn btn-danger">Delete</a>
+                            <a href="delete.php?id=<?php echo $person['id'];?>" class="btn btn-danger">Delete</a>
                         </td>
 
                     </tr>
                     <?php endforeach;?>
 
                 </table>
+                <a class="btn btn-primary" href="create.php">Create New employee</a>
+
             </div>
         </div>
     </div>

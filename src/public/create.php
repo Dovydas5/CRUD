@@ -15,7 +15,7 @@ if(isset($_POST['name']) && isset($_POST['project'])){
 ?>
 <?php include_once '../includes/head.php' ?>
 <div class="container">
-    <div class="card">
+    <div class="card mt-5">
         <div class="card-header">
             <h2>Create a person</h2>
         </div>
