@@ -1,4 +1,6 @@
 <?php include_once '../includes/db.php';?>
+<?php include_once '../includes/functions.php';?>
+
 
 <?php
 $sql = "SELECT * FROM people";
@@ -21,20 +23,7 @@ $people = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>Action</th>
 
                     </tr>
-                    <?php foreach($people as $person):?>
-
-                    <tr>
-                        <td><?php echo $person['id'];?></td>
-                        <td><?php echo $person['name'];?></td>
-                        <td><?php echo $person['project'];?></td>
-                        <td>
-                            <a href="edit.php?id=<?php echo $person['id'];?>" class="btn btn-primary">Edit</a>
-                            <a href="delete.php?id=<?php echo $person['id'];?>" class="btn btn-danger">Delete</a>
-                        </td>
-
-                    </tr>
-                    <?php endforeach;?>
-
+                    <?php employeeRead($conn);?>
                 </table>
                 <a class="btn btn-primary" href="create.php">Create New employee</a>
 
