@@ -1,4 +1,4 @@
-# File Manager
+# CRUD
 
 ### Reikės dokerio
 Parsisiunčiate ir įsidiegiate įrankį iš [čia](https://docs.docker.com/engine/install/). Windows OS `docker-compose` įsidiegia su dockerio install'u.
