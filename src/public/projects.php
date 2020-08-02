@@ -1,4 +1,4 @@
-<?php include_once '../includes/db.php';?>
+<?php include_once '../includes/actions.php';?>
 <?php include_once '../includes/functions.php';?>
 
 

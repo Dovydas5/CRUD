@@ -1,14 +1,6 @@
-<?php include_once '../includes/db.php';?>
+<?php require '../includes/actions.php';?>
 <?php include_once '../includes/functions.php';?>
-
-
-<?php
-$sql = "SELECT * FROM people";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$people = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-<?php include_once '../includes/head.php'?>
+<?php include_once '../includes/head.php'?>;
 
 <div class="container">
     <div class="card mt-5">

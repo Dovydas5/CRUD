@@ -1,19 +1,6 @@
 <?php
-require '../includes/db.php';
-$id = $_GET['id'];
-$sql = 'SELECT * FROM people WHERE id=:id';
-$stmt = $conn->prepare($sql);
-$stmt->execute([':id' => $id ]);
-$person = $stmt->fetch(PDO::FETCH_ASSOC);
-if (isset ($_POST['name'])  && isset($_POST['project']) ) {
-    $name = $_POST['name'];
-    $project = $_POST['project'];
-    $sql = 'UPDATE people SET name=:name, project=:project WHERE id=:id';
-    $stmt = $conn->prepare($sql);
-    if ($stmt->execute([':name' => $name, ':project' => $project, ':id' => $id])) {
-        header("Location: /");
-    }
-}
+include_once '../includes/actions.php';
+
 ?>
 <?php require '../includes/head.php'; ?>
     <div class="container">
