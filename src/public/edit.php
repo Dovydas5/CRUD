@@ -1,17 +1,25 @@
 <?php
-require '../includes/db.php';
+require '../includes/functions.php';
+
+$projects = getAllProjects($conn);
 $id = $_GET['id'];
-$sql = 'SELECT * FROM people WHERE id=:id';
+$sql = '
+    SELECT u.*, p.project_name FROM user u
+        LEFT JOIN project p
+            ON u.project_id = p.id
+        WHERE u.id=:id
+';
 $stmt = $conn->prepare($sql);
 $stmt->execute([':id' => $id ]);
+
 $person = $stmt->fetch(PDO::FETCH_ASSOC);
 if (isset ($_POST['name'])  && isset($_POST['project']) ) {
     $name = $_POST['name'];
-    $project = $_POST['project'];
-    $sql = 'UPDATE people SET name=:name, project=:project WHERE id=:id';
+    $project = $_POST['project'] ? (int) $_POST['project']: null;
+    $sql = 'UPDATE user SET name=:name, project_id=:project WHERE id=:id ';
     $stmt = $conn->prepare($sql);
-    if ($stmt->execute([':name' => $name, ':project' => $project, ':id' => $id])) {
-        header("Location: /");
+    if ($stmt->execute([':name' => $name,':project'=>$project, ':id' => $id])) {
+        header("Location: index.php");
     }
 }
 ?>
@@ -33,8 +41,13 @@ if (isset ($_POST['name'])  && isset($_POST['project']) ) {
                         <input value="<?php echo $person['name']; ?>" type="text" name="name" id="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="project">project</label>
-                        <input value="<?= $person['project']; ?>" name="project" id="project" class="form-control">
+                        <label for="project">Project</label>
+                        <select name="project" class="custom-select">
+                            <option value="">Select project</option>
+                            <?php foreach ($projects as $project):?>
+                                <option  value="<?php echo $project['id'];?>"<?php echo $project['id'] === $person['project_id']? 'selected': '' ?>><?php echo $project['project_name'];?></option>
+                            <?php endforeach;?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-info">Update person</button>

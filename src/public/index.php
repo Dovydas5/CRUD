@@ -1,10 +1,21 @@
-<?php include_once '../includes/actions.php';?>
-
 <?php
-$sql = "SELECT * FROM people";
+include_once '../includes/actions.php';
+include_once '../includes/functions.php';
+
+
+$sql = '
+    SELECT
+        u.*,
+        p.project_name AS "project"
+    FROM user u
+        LEFT JOIN project p
+            ON u.project_id = p.id
+    ORDER BY u.id ASC
+';
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $people = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$projects = getAllProjects($conn);
 ?>
 <?php include_once '../includes/head.php'?>
 
@@ -44,13 +55,19 @@ $people = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endif;?>
                     <form method="POST">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Employer name</label>
                             <input type="text" name="name" id="name" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="name">Project</label>
-                            <input  type="text" name="project" id="project" class="form-control">
+                            <label for="project">Project</label>
+                            <select name="project" class="custom-select">
+                                <option value="">Select project</option>
+                                <?php foreach ($projects as $project):?>
+                                <option value="<?php echo $project['id'];?>"><?php echo $project['project_name'];?></option>
+                                <?php endforeach;?>
+                            </select>
                         </div>
+
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Create</button>

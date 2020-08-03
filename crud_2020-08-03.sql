@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.30)
 # Database: crud
-# Generation Time: 2020-07-30 10:21:52 +0000
+# Generation Time: 2020-08-03 19:04:19 +0000
 # ************************************************************
 
 
@@ -20,32 +20,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table people
+# Dump of table project
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `people`;
-
-CREATE TABLE `people` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(55) NOT NULL DEFAULT '',
-  `project` varchar(55) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `project` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_name` varchar(130) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `project_name` (`project_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-
-# Dump of table projects
+# Dump of table user
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `projects`;
-
-CREATE TABLE `projects` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `proj_name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(130) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `project_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_project` (`project_id`),
+  CONSTRAINT `FK_project` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

@@ -1,11 +1,19 @@
 <?php include_once '../includes/actions.php';?>
 
 <?php
-$sql = "SELECT * FROM projects";
-
+$sql = '
+    SELECT
+        project.*,
+        GROUP_CONCAT(user.name SEPARATOR \', \') AS name
+    FROM project 
+        LEFT JOIN user
+            ON user.project_id = project.id
+    GROUP BY project.id
+    ORDER BY project.id ASC
+';
 $stmt = $conn->prepare($sql);
 $stmt->execute();
-$project = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php include_once '../includes/head.php'?>
 
@@ -22,16 +30,16 @@ $project = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>Action</th>
 
                     </tr>
-                    <?php foreach($project as $projects):?>
+                    <?php foreach($projects as $project):?>
 
                         <tr>
-                            <td><?php echo $projects['id'];?></td>
-                            <td><?php echo $projects['proj_name'];?></td>
-                            <td><?php echo $person['name'];?></td>
+                            <td><?php echo $project['id'];?></td>
+                            <td><?php echo $project['project_name'];?></td>
+                            <td><?php echo $project['name'];?></td>
 
                             <td>
-                                <a href="edit.php?id=<?php echo $projects['id'];?>" class="btn btn-primary">Edit</a>
-                                <a href="delete.php?id=<?php echo $projects['id'];?>" class="btn btn-danger">Delete</a>
+                                <a href="edit.php?id=<?php echo $project['id'];?>" class="btn btn-primary">Edit</a>
+                                <a href="deleteProj.php?id=<?php echo $project['id'];?>" class="btn btn-danger">Delete</a>
                             </td>
 
                         </tr>
