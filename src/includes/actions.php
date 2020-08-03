@@ -11,3 +11,15 @@ if(isset($_POST['name']) && isset($_POST['project'])){
         $msg = "Inserted successfully";
     }
 }
+if(isset($_POST['projectName'])){
+
+    $projectName = $_POST['projectName'];
+    $sql = 'INSERT INTO projects(proj_name) VALUES (:projectName)';
+    $stmt = $conn->prepare($sql);
+    if( $stmt->execute(['projectName' => $projectName])){
+        $msg = "Inserted successfully";
+    }
+}
+
+
+

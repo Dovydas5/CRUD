@@ -1,4 +1,4 @@
-<?php include_once '../includes/db.php';?>
+<?php include_once '../includes/actions.php';?>
 
 <?php
 $sql = "SELECT * FROM projects";
@@ -12,7 +12,7 @@ $project = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container">
     <div class="card mt-5">
         <div class="card-header">
-            <h2>Employees</h2>
+            <h2>Projects</h2>
             <div class="card-body">
                 <table class="table table-bordered">
                     <tr>
@@ -38,8 +38,23 @@ $project = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endforeach;?>
 
                 </table>
-                <a class="btn btn-primary" href="create.php">Create New employee</a>
+                <div class="card-body">
+                    <?php if(!empty($msg)):?>
+                        <div class="alert alert-success" role="alert">
+                            <?php echo $msg ?>
+                        </div>
+                    <?php endif;?>
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="name">Project</label>
+                            <input value="<?= $person['project']; ?>" type="text" name="projectName" id="project" class="form-control">
+                        </div>
 
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
