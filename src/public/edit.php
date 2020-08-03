@@ -33,7 +33,7 @@ if (isset ($_POST['name'])  && isset($_POST['project']) ) {
                         <input value="<?php echo $person['name']; ?>" type="text" name="name" id="name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="project">Email</label>
+                        <label for="project">project</label>
                         <input value="<?= $person['project']; ?>" name="project" id="project" class="form-control">
                     </div>
                     <div class="form-group">
