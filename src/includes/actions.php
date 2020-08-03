@@ -11,3 +11,4 @@ if(isset($_POST['name']) && isset($_POST['project'])){
         $msg = "Inserted successfully";
     }
 }
+

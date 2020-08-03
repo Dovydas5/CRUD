@@ -1,8 +1,9 @@
-<?php include_once '../includes/db.php';?>
+<?php include_once '../includes/actions.php';?>
+<?php include_once '../includes/functions.php';?>
+
 
 <?php
 $sql = "SELECT * FROM projects";
-
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $project = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -22,20 +23,7 @@ $project = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>Action</th>
 
                     </tr>
-                    <?php foreach($project as $projects):?>
-
-                        <tr>
-                            <td><?php echo $projects['id'];?></td>
-                            <td><?php echo $projects['proj_name'];?></td>
-                            <td><?php echo $person['name'];?></td>
-
-                            <td>
-                                <a href="edit.php?id=<?php echo $projects['id'];?>" class="btn btn-primary">Edit</a>
-                                <a href="delete.php?id=<?php echo $projects['id'];?>" class="btn btn-danger">Delete</a>
-                            </td>
-
-                        </tr>
-                    <?php endforeach;?>
+                    <?php projectRead($conn)?>
 
                 </table>
                 <a class="btn btn-primary" href="create.php">Create New employee</a>
