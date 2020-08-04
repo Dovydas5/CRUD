@@ -6,7 +6,7 @@ $projects=getAllProjects($conn);
 
 $id = $_GET['id'];
 $sql = '
-    SELECT u.*, p.project_name FROM user u
+    SELECT p.*, p.project_name FROM user u
         LEFT JOIN project p
             ON u.project_id = p.id
         WHERE u.id=:id
@@ -14,14 +14,14 @@ $sql = '
 $stmt = $conn->prepare($sql);
 $stmt->execute([':id' => $id ]);
 
-$person = $stmt->fetch(PDO::FETCH_ASSOC);
+$project = $stmt->fetch(PDO::FETCH_ASSOC);
 if (isset ($_POST['name'])  && isset($_POST['project']) ) {
     $name = $_POST['name'];
     $project = $_POST['project'] ? (int) $_POST['project']: null;
     $sql = 'UPDATE project SET project_name=:name WHERE id=:id ';
     $stmt = $conn->prepare($sql);
     if ($stmt->execute([':name' => $name, ':id' => $id])) {
-        header("Location: index.php");
+        header("Location: projects.php");
     }
 }
 ?>
@@ -38,7 +38,6 @@ if (isset ($_POST['name'])  && isset($_POST['project']) ) {
                     </div>
                 <?php endif; ?>
                 <form method="post">
-
                     <div class="form-group">
                         <label for="project">Employee</label>
                         <select name="project" class="custom-select">
