@@ -2,6 +2,7 @@
 require '../includes/functions.php';
 
 $persons= getAllEmployees($conn);
+$projects=getAllProjects($conn);
 
 $id = $_GET['id'];
 $sql = '
@@ -37,10 +38,7 @@ if (isset ($_POST['name'])  && isset($_POST['project']) ) {
                     </div>
                 <?php endif; ?>
                 <form method="post">
-                    <div class="form-group">
-                        <label for="name">Project Name</label>
-                        <input value="<?php echo $person['name']; ?>" type="text" name="name" id="name" class="form-control">
-                    </div>
+
                     <div class="form-group">
                         <label for="project">Employee</label>
                         <select name="project" class="custom-select">
@@ -49,9 +47,13 @@ if (isset ($_POST['name'])  && isset($_POST['project']) ) {
                                 <option  value="<?php echo $project['id'];?>"<?php echo $project['id'] === $person['project_id']? 'selected': '' ?>><?php echo $person['name'];?></option>
                             <?php endforeach;?>
                         </select>
+                        <div class="form-group">
+                            <label for="name">Project Name</label>
+                            <input value="<?php echo $project['project_name']; ?>" type="text" name="name" id="name" class="form-control">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-info">Update person</button>
+                        <button type="submit" class="btn btn-info">Update project</button>
                     </div>
                 </form>
             </div>
