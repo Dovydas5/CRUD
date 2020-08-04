@@ -10,10 +10,6 @@ Jeigu naudojate MacOS arba Linux, parsisiunčiate ir įsidiegiate `docker-compos
 ### Projekto paleidimas
 
 
- Susikurkite duomenų bazę pavadinimu `crud`, pasirinkę ją, importuokite `crud_2020-08-03.sql`
-
-
-
 ```bash
   $ git clone <project>
   $ cd path/to/<project>
