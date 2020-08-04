@@ -17,13 +17,12 @@ Jeigu naudojate MacOS arba Linux, parsisiunčiate ir įsidiegiate `docker-compos
 ```bash
   $ git clone <project>
   $ cd path/to/<project>
-```  
-  Susikurkite duomenų bazę pavadinimu `crud`, pasirinkę ją, importuokite `crud_2020-08-03.sql`
-
-```bash
-
   $ docker-compose up -d
 ```
+  Prie duomenų bazės prisijungti galite su `root:root`
+  
+  Susikurkite duomenų bazę pavadinimu `crud`, pasirinkę ją importuokite `crud_2020-08-03.sql`
+
 ### Kaip pamatyti kas atsitiko?
 Atsidarote naršyklę ir einate į 
 ```bash
