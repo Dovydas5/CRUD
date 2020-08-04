@@ -38,7 +38,7 @@ $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $project['name'];?></td>
 
                             <td>
-                                <a href="edit.php?id=<?php echo $project['id'];?>" class="btn btn-primary">Edit</a>
+                                <a href="editProject.php?id=<?php echo $project['id'];?>" class="btn btn-primary">Edit</a>
                                 <a href="deleteProj.php?id=<?php echo $project['id'];?>" class="btn btn-danger">Delete</a>
                             </td>
 

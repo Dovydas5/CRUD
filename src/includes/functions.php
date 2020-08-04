@@ -9,3 +9,12 @@ function getAllProjects(PDO $conn): array
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function getAllEmployees(PDO $conn): array
+{
+    $sql = "SELECT * FROM user";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
