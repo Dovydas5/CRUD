@@ -16,8 +16,14 @@ Jeigu naudojate MacOS arba Linux, parsisiunčiate ir įsidiegiate `docker-compos
   $ docker-compose up -d
 ```
   Prie duomenų bazės prisijungti galite su `root:root`
+    
   
   Susikurkite duomenų bazę pavadinimu `crud`, pasirinkę ją importuokite `crud_2020-08-03.sql`
+  
+  
+  Jei naudojate ne dockerį, reikės pakeisti `db.php` faile `$servername į localhost` ir slaptažodį į Jūsų nustatytą `Ampps default - mysql`.
+
+  
 
 ### Kaip pamatyti kas atsitiko?
 Atsidarote naršyklę ir einate į 
